@@ -1,0 +1,23 @@
+package com.appsdeveloperblog.app.ws.userservice;
+
+import java.util.HashMap;
+import java.util.UUID;
+
+import com.appsdeveloperblog.app.ws.ui.model.response.UserDetailsRequestModel;
+import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
+
+public class UserServiceImpl implements UserService{
+
+	@Override
+	UserRest createUser(UserDetailsRequestModel userDetails) {
+		UserRest returnValue=new UserRest();
+		returnValue.setEmail(userDetails.getEmail());
+		returnValue.setFirstName(userDetails.getFirstName());
+		returnValue.setLastName(userDetails.getLastName());
+		
+		String userId= UUID.randomUUID().toString();
+		returnValue.setUserId(userId);
+		if(users == null) { users = new HashMap<>();}
+		users.put(userId, returnValue);
+	}
+}
